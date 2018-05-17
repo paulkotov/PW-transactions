@@ -1,0 +1,6 @@
+<div class="row">
+  <div class="col-xs-12" *ngIf="user && user.name">
+    <span>You logged as: <b>{{user.name}}</b> </span>  
+  </div>
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+</div>

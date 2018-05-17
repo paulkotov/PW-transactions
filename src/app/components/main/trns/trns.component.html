@@ -1,0 +1,71 @@
+<div *ngIf="transactionsHistory"></div>
+<ng-template #whenTrue>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>New transaction</h3>
+      <div class="col-sx-12" style="display: flex; justify-content: space-around; align-items: center;">
+
+          <div class="form-goup">
+            <label>Recepient</label>
+            <input type="text" class="form-control" [(ngModel)]="transaction.recepient" name="recepient" #recepient/>
+          </div>
+
+          <div class="form-goup">
+              <label>Ammount</label>
+              <input type="number" class="form-control" [(ngModel)]="transaction.ammount" name="ammount" #ammount/>
+            </div>
+
+          <div class="form-goup">
+            <button class="btn btn-primary" 
+            (click)="addTransaction(transaction)"
+            [disabled]="transaction.recepient ==='' && transaction.ammount === 0 ">Transact</button>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <!-- <table>
+        <thead>
+          <td>Recepient</td>
+          <td>Ammount</td>
+          <td>Transaction id</td>
+        </thead>
+        <tbody>
+          <trns-items></trns-items>
+        </tbody>
+      </table> -->
+      <h3>Recent transations</h3>
+      <!-- <trns-items></trns-items> -->
+      <div class="col-xs-8">
+          <ul class="list-group" *ngFor="let trns of transactions; let i = index">
+            <li class="list-group-item" >
+              <span>{{i+1}}. Recepient: <b>{{trns.transaction.recepient}}</b> Ammount: <b>{{trns.transaction.ammount}}</b></span>
+              <div>id: {{trns.id}} date: {{trns.date}}</div>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="panel-footer" style="display: flex; justify-content: space-between;">
+      <div>Total ammount of all transactions: {{total}}</div>
+      <div>Balance: <b>{{user_balance}}</b></div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Transactions history</h3>
+      <ul *ngFor="let trns of transactionsHistory; let i = index">
+          <li>
+            <span>{{i+1}}. Id: <b>{{trns.id}}</b> Date: <b>{{trns.date}}</b> Recepient: <b>{{trns.username}}</b> id: <b>{{trns.id}}</b> date: <b>{{trns.date}}</b></span>
+            <div></div>
+          </li>
+        </ul>
+    </div>
+  </div>
+</ng-template >
+
+<ng-template #whenFalse>
+  No information! Please, register to manage your transactions!
+</ng-template>
+
